@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New age</title>
+    <!--<script src="http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js"></script>-->
+    <script src="vendor/require.js"></script>
+</head>
+<body style="background-color: black; margin: 0px; overflow: hidden;">
+<script>
+    require(["vendor/laya/laya.core"], function () {
+        require(["vendor/laya/laya.webgl"/*, "vendor/laya/laya.ui"*/], function () {
+//          require(["vendor/laya/laya.debugtool"], function () {});
+            require(["js/NA"], function () {
+                start();
+            });
+        });
+    });
+
+    function start() {
+        window.na.init();
+    }
+</script>
+</body>
+</html>
