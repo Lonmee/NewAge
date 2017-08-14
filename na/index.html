@@ -8,18 +8,15 @@
 </head>
 <body style="background-color: black; margin: 0px; overflow: hidden;">
 <script>
+    //"vendor/laya/laya.ui","vendor/laya/laya.debugtool" maybe useful
     require(["vendor/laya/laya.core"], function () {
-        require(["vendor/laya/laya.webgl"/*, "vendor/laya/laya.ui"*/], function () {
-//          require(["vendor/laya/laya.debugtool"], function () {});
-            require(["js/NA"], function () {
-                start();
+        require(["vendor/laya/laya.webgl"], function () {
+            require(["js/NA"], function (d) {
+                d.NA();
             });
         });
     });
 
-    function start() {
-        window.na.init();
-    }
 </script>
 </body>
 </html>
