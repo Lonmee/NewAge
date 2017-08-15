@@ -1,8 +1,7 @@
-import Dictionary = laya.utils.Dictionary;
-
 /**
  * Created by Lonmee on 6/13/2017.
  */
+import Dictionary = laya.utils.Dictionary;
 
 interface IBindable {
     bind(key, caller, fun);
