@@ -149,8 +149,6 @@
 								}
 						}
 						keyFrame.data=new Float32Array(keyframeDataCount);
-						keyFrame.dData=new Float32Array(keyframeDataCount);
-						keyFrame.nextData=new Float32Array(keyframeDataCount);
 						for (l=0;l < keyframeDataCount;l++){
 							keyFrame.data[l]=reader.getFloat32();
 							if (keyFrame.data[l] >-0.00000001 && keyFrame.data[l] < 0.00000001)keyFrame.data[l]=0;
@@ -264,8 +262,6 @@
 						{};
 						keyFrame.startTime=reader.getFloat32();
 						(lastKeyFrame)&& (lastKeyFrame.duration=keyFrame.startTime-lastKeyFrame.startTime);
-						keyFrame.dData=new Float32Array(keyframeWidth);
-						keyFrame.nextData=new Float32Array(keyframeWidth);
 						var offset=AnimationParser02._DATA.offset;
 						var keyframeDataOffset=reader.getUint32();
 						var keyframeDataLength=keyframeWidth *4;
@@ -2591,7 +2587,6 @@
 			this.duration=NaN;
 			this.interpolationData=null;
 			this.data=null;
-			this.dData=null;
 			this.nextData=null;
 		}
 
@@ -3216,10 +3211,7 @@
 			keyFrames[keyframeCount]=keyFrames[0];
 			for (var i=0;i < keyframeCount;i++){
 				var keyFrame=keyFrames[i];
-				for (var j=0;j < keyframeDataCount;j++){
-					keyFrame.dData[j]=(keyFrame.duration===0)? 0 :(keyFrames[i+1].data[j]-keyFrame.data[j])/ keyFrame.duration;
-					keyFrame.nextData[j]=keyFrames[i+1].data[j];
-				}
+				keyFrame.nextData=(keyFrame.duration===0)? keyFrame.data :keyFrames[i+1].data;
 			}
 			keyFrames.length--;
 		}
@@ -3238,6 +3230,21 @@
 					AnimationParser01.parse(this,reader);
 				}
 			this._endLoaded();
+		}
+
+		/**
+		*@inheritDoc
+		*/
+		__proto.detoryResource=function(){
+			this._aniVersion=null;
+			this._anis=null;
+			this._aniMap=null;
+			this._publicExtData=null;
+			this.unfixedCurrentFrameIndexes=null;
+			this.unfixedCurrentTimes=null;
+			this.unfixedKeyframes=null;
+			this._aniClassName=null;
+			this._animationDatasCache=null;
 		}
 
 		__proto.getAnimationCount=function(){
@@ -3308,7 +3315,7 @@
 						case 0:
 						case 1:
 							for (j=0;j < node.keyframeWidth;)
-							j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,key.dData,key.duration,key.nextData);
+							j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,null,key.duration,key.nextData);
 							break ;
 						case 2:;
 							var interpolationData=key.interpolationData;
@@ -3318,13 +3325,13 @@
 								var type=interpolationData[j];
 							switch (type){
 								case 6:
-									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,key.dData,key.duration,key.nextData,interpolationData,j+1);
+									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,null,key.duration,key.nextData,interpolationData,j+1);
 									break ;
 								case 7:
-									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,key.dData,key.duration,key.nextData,interpolationData,j+1);
+									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,null,key.duration,key.nextData,interpolationData,j+1);
 									break ;
 								default :
-									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,key.dData,key.duration,key.nextData);
+									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,null,key.duration,key.nextData);
 								}
 							dataIndex++;
 						}
@@ -3332,7 +3339,7 @@
 					}
 					}else {
 					for (j=0;j < node.keyframeWidth;)
-					j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,key.dData,key.duration,key.nextData);
+					j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,null,key.duration,key.nextData);
 				}
 				outOfs+=node.keyframeWidth;
 			}
@@ -3391,7 +3398,7 @@
 						case 0:
 						case 1:
 							for (j=0;j < node.keyframeWidth;)
-							j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,key.dData,key.duration,key.nextData);
+							j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,null,key.duration,key.nextData);
 							break ;
 						case 2:;
 							var interpolationData=key.interpolationData;
@@ -3401,13 +3408,13 @@
 								var type=interpolationData[j];
 							switch (type){
 								case 6:
-									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,key.dData,key.duration,key.nextData,interpolationData,j+1);
+									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,null,key.duration,key.nextData,interpolationData,j+1);
 									break ;
 								case 7:
-									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,key.dData,key.duration,key.nextData,interpolationData,j+1);
+									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,null,key.duration,key.nextData,interpolationData,j+1);
 									break ;
 								default :
-									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,key.dData,key.duration,key.nextData);
+									j+=AnimationTemplet.interpolation[type](node,dataIndex,originalData,outOfs+dataIndex,key.data,dt,null,key.duration,key.nextData);
 								}
 							dataIndex++;
 						}
@@ -3415,14 +3422,15 @@
 					}
 					}else {
 					for (j=0;j < node.keyframeWidth;)
-					j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,key.dData,key.duration,key.nextData);
+					j+=node.interpolationMethod[j](node,j,originalData,outOfs+j,key.data,dt,null,key.duration,key.nextData);
 				}
 				outOfs+=node.keyframeWidth;
 			}
 		}
 
 		AnimationTemplet._LinearInterpolation_0=function(bone,index,out,outOfs,data,dt,dData,duration,nextData,interData){
-			out[outOfs]=data[index]+dt *dData[index];
+			var amount=duration===0 ? 0 :dt / duration;
+			out[outOfs]=(1.0-amount)*data[index]+amount *nextData[index];
 			return 1;
 		}
 
@@ -3994,7 +4002,7 @@
 			if (autoKey && this._indexControl){
 				return;
 			};
-			var tCurrTime=Laya.timer.currTimer;
+			var tCurrTime=this.timer.currTimer;
 			var preIndex=this._player.currentKeyframeIndex;
 			var dTime=tCurrTime-this._lastTime;
 			if (autoKey){
@@ -4537,7 +4545,7 @@
 					if (this._pause){
 						this._pause=false;
 						this._lastTime=Browser.now();
-						Laya.stage.frameLoop(1,this,this._update,null,true);
+						this.timer.frameLoop(1,this,this._update,null,true);
 					}
 					this._update();
 				}
@@ -4553,7 +4561,7 @@
 				if (this._player){
 					this._player.stop(true);
 				}
-				Laya.timer.clear(this,this._update);
+				this.timer.clear(this,this._update);
 			}
 		}
 
@@ -4576,7 +4584,7 @@
 				if (this._player){
 					this._player.paused=true;
 				}
-				Laya.timer.clear(this,this._update);
+				this.timer.clear(this,this._update);
 			}
 		}
 
@@ -4591,7 +4599,7 @@
 					this._player.paused=false;
 				}
 				this._lastTime=Browser.now();
-				Laya.stage.frameLoop(1,this,this._update,null,true);
+				this.timer.frameLoop(1,this,this._update,null,true);
 			}
 		}
 
@@ -4629,7 +4637,7 @@
 			this._curOriginalData=null;
 			this._boneMatrixArray.length=0;
 			this._lastTime=0;
-			Laya.timer.clear(this,this._update);
+			this.timer.clear(this,this._update);
 		}
 
 		/**
@@ -4755,8 +4763,8 @@
 
 		/**@private */
 		__proto._$3__onDisplay=function(value){
-			if (value)Laya.timer.loop(this.interval,this,this.updates,null,true);
-			else Laya.timer.clear(this,this.updates);
+			if (value)this.timer.loop(this.interval,this,this.updates,null,true);
+			else this.timer.clear(this,this.updates);
 		}
 
 		/**@private 更新时间轴*/
@@ -4848,7 +4856,7 @@
 			this.stop();
 			this._idOfSprite.length=0;
 			if (!this._parentMovieClip){
-				Laya.timer.clear(this,this.updates);
+				this.timer.clear(this,this.updates);
 				var i=0,len=0;
 				len=this._movieClipList.length;
 				for (i=0;i < len;i++){
@@ -5073,7 +5081,7 @@
 			this._initState();
 			this.play(0);
 			this.event(/*laya.events.Event.LOADED*/"loaded");
-			if (!this._parentMovieClip)Laya.timer.loop(this.interval,this,this.updates,null,true);
+			if (!this._parentMovieClip)this.timer.loop(this.interval,this,this.updates,null,true);
 		}
 
 		/**
