@@ -1,5 +1,20 @@
 /**
  * Created by Lonmee on 6/13/2017.
+ *
+ * for e.g.
+ *
+ * function updateDD2(n){
+ * console.log("herer dd changed2", n);
+ * }
+ * dh.bd.bind("dd", null, updateDD2)
+ *
+ * function updateDD(n){
+ * console.log("herer dd changed", n);
+ * }
+ * dh.bd.bind("dd", null, updateDD)
+ *
+ * dh.bd.set("dd", 500)
+ *
  */
 import Dictionary = laya.utils.Dictionary;
 
@@ -24,7 +39,7 @@ export class BindableDictionary extends Dictionary implements IBindable {
 
     unbind(key, caller = null, fun = null) {
         let idx;
-        if (caller == null)
+        if (caller == null && fun == null)
             delete this.watcher[key];
         else if (fun == null)
             this.deleteCaller(this.watcher[key], caller);
@@ -32,7 +47,7 @@ export class BindableDictionary extends Dictionary implements IBindable {
             this.watcher[key].splice(idx, 1);
     }
 
-    set (key: any, value: any): void {
+    set(key: any, value: any): void {
         super.set(key, value);
         let ke;
         if (ke = this.watcher[key])

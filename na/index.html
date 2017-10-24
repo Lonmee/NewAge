@@ -8,9 +8,9 @@
 </head>
 <body style="background-color: black; margin: 0px; overflow: hidden;">
 <script>
-    //"vendor/laya/laya.ui","vendor/laya/laya.debugtool" maybe useful
+    //"vendor/laya/laya.debugtool" maybe useful
     require(["vendor/laya/laya.core"], function () {
-        require(["vendor/laya/laya.webgl"], function () {
+        require(["vendor/laya/laya.webgl", "vendor/laya/laya.ui.js"], function () {
             require(["js/NA"], function (d) {
                 new d.NA();
             });
