@@ -5775,7 +5775,7 @@ var Laya=window.Laya=(function(window,document){
 				}
 				}else {
 				for (var i=0;i < n;++i)
-				(ele=(childs [i]))._style.visible && ele.render(context,x,y);
+				(ele=(childs[i]))._style&&ele._style.visible && ele.render(context,x,y);
 			}
 		}
 

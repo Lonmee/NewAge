@@ -4,15 +4,15 @@
 import {BindableDictionary} from "./data/BindableDictionary";
 
 export class DH {
-    static _instance: DH;
+    private static _instance: DH;
     bd: BindableDictionary;
 
     constructor() {
         this.bd = new BindableDictionary();
     }
 
-    static instance() {
-        return this._instance || new DH();
+    static get instance() {
+        return this._instance || (this._instance = new DH());
     }
 
 }

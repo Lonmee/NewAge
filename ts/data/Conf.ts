@@ -4,9 +4,8 @@
  * for static data
  *
  */
-export default class Conf {
+export class Conf {
     static frameVer = "1.0";
     static version = "1.0";
     static debug: boolean = true;
-
 }

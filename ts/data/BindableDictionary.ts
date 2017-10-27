@@ -18,7 +18,7 @@
  */
 import Dictionary = laya.utils.Dictionary;
 
-interface IBindable {
+export interface IBindable {
     bind(key, caller, fun);
 
     unbind(key, fun);
