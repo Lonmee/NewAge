@@ -59,9 +59,8 @@ export class BindableDictionary extends Dictionary implements IBindable {
     set(key, value: any): void {
         //for store value
         let kArr = key.split(".");
-        let k, to;
-        let o = this.indexOf(k = kArr.shift()) > -1 ? super.get(k) : super.set(k, to = {});
-        this.saveObj(o || to, kArr, value);
+        let k, o;
+        this.indexOf(k = kArr.shift()) > -1 ? kArr.length ? this.saveObj(super.get(k), kArr, value) : super.set(k, value) : kArr.length ? super.set(k, o = {}) || this.saveObj(o, kArr, value) : super.set(k, value);
         //for sync update handler
         let ke;
         if (ke = this.watcher[key])
