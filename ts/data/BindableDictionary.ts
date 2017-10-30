@@ -60,7 +60,9 @@ export class BindableDictionary extends Dictionary implements IBindable {
         //for store value
         let kArr = key.split(".");
         let k, o;
-        this.indexOf(k = kArr.shift()) > -1 ? kArr.length ? this.saveObj(super.get(k), kArr, value) : super.set(k, value) : kArr.length ? super.set(k, o = {}) || this.saveObj(o, kArr, value) : super.set(k, value);
+        //有值？多层？递归更新（）：更新（）：多层？递归创建并赋值（）：单次创建并赋值（）；
+        this.indexOf(k = kArr.shift()) > -1 ? kArr.length ? this.saveObj(super.get(k), kArr, value) : super.set(k, value) ://value
+            kArr.length ? super.set(k, o = {}) || this.saveObj(o, kArr, value) : super.set(k, value);//no value
         //for sync update handler
         let ke;
         if (ke = this.watcher[key])
@@ -76,10 +78,8 @@ export class BindableDictionary extends Dictionary implements IBindable {
 
     private saveObj(obj: object, kArr: string[], value) {
         let k = kArr.shift();
-        if (kArr.length)
-            return obj.hasOwnProperty(k) ? this.saveObj(obj[k], kArr, value) : this.saveObj(obj[k] = {}, kArr, value);
-        else
-            return obj[k] = value;
+        return kArr.length ? obj.hasOwnProperty(k) ? this.saveObj(obj[k], kArr, value) : this.saveObj(obj[k] = {}, kArr, value) :
+            obj[k] = value;
     }
 
     private deleteCaller(arr, e1) {
