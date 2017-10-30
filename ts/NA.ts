@@ -26,5 +26,6 @@ export class NA {
 
     init() {
         Laya.stage.addChild(new Test());
+        this.dh.bd.set("view.test.iPos", {x:200, y:100});
     }
 }

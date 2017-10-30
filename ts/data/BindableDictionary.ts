@@ -47,13 +47,37 @@ export class BindableDictionary extends Dictionary implements IBindable {
             this.watcher[key].splice(idx, 1);
     }
 
-    set(key: any, value: any): void {
-        super.set(key, value);
+    get(key: any): any {
+        let kArr = key.split(".");
+        let k;
+        return this.indexOf(k = kArr.shift()) > -1 ? kArr.length ? this.readObj(super.get(k), kArr) : super.get(k) : null;
+    }
+
+    set(key, value: any): void {
+        //for store value
+        let kArr = key.split(".");
+        let k, to;
+        let o = this.indexOf(k = kArr.shift()) > -1 ? super.get(k) : super.set(k, to = {});
+        this.saveObj(o || to, kArr, value);
+        //for sync update handler
         let ke;
         if (ke = this.watcher[key])
             for (let ce of ke) {
                 ce[1].call(ce[0], value);
             }
+    }
+
+    private readObj(obj, kArr) {
+        let k = kArr.shift();
+        return kArr.length ? this.readObj(obj[k], kArr) : obj[k];
+    }
+
+    private saveObj(obj: object, kArr: string[], value) {
+        let k = kArr.shift();
+        if (kArr.length)
+            return obj.hasOwnProperty(k) ? this.saveObj(obj[k], kArr, value) : this.saveObj(obj[k] = {}, kArr, value);
+        else
+            return obj[k] = value;
     }
 
     private deleteCaller(arr, e1) {
