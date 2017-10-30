@@ -3,7 +3,7 @@
  */
 
 import {DH} from "./DH";
-import {Test} from "./Test";
+import {Test} from "./test/Test";
 import {Conf} from "./data/Conf";
 import Stage = laya.display.Stage;
 

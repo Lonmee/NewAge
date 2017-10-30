@@ -1,6 +1,9 @@
 /**
  * Created by Lonmee on 6/13/2017.
  *
+ * 支持stirng类型的点句式的设置和读取，如:this.dh.bd.set("view.test.iPos", {x:100, y:50});
+ * 会自行创建view对象、test对象、iPos对象并维持父子关系且将iPos赋值为{x:100, y:50});
+ *
  * for e.g.
  *
  * function updateDD2(n){
