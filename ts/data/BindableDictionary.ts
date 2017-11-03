@@ -71,6 +71,13 @@ export class BindableDictionary extends Dictionary implements IBindable {
             }
     }
 
+    remove(key: any): boolean {
+        this.unbind(key);
+        let kArr = key.split(".");
+        let k = kArr.shift();
+        return kArr.length ? this.delObj(super.get(k), kArr) : super.remove([k]);
+    }
+
     private readObj(obj, kArr) {
         let k = kArr.shift();
         return kArr.length ? this.readObj(obj[k], kArr) : obj[k];
@@ -80,6 +87,11 @@ export class BindableDictionary extends Dictionary implements IBindable {
         let k = kArr.shift();
         return kArr.length ? obj.hasOwnProperty(k) ? this.saveObj(obj[k], kArr, value) : this.saveObj(obj[k] = {}, kArr, value) :
             obj[k] = value;
+    }
+
+    private delObj(obj: Object, kArr: string[]) {
+        let k = kArr.shift();
+        return kArr.length ? this.delObj(obj[k], kArr) : delete obj[k];
     }
 
     private deleteCaller(arr, e1) {
