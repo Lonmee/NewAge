@@ -1,6 +1,6 @@
 import Sprite = laya.display.Sprite;
 import Image = laya.ui.Image;
-import {DH} from "../DH";
+import {DH} from "../data/DH";
 
 export class Test extends Sprite {
     i: Image;

@@ -1,7 +1,7 @@
 /**
  * Created by Lonmee on 8/11/2017.
  */
-import {BindableDictionary} from "./data/BindableDictionary";
+import {BindableDictionary} from "./BindableDictionary";
 
 export class DH {
     private static _instance: DH;
