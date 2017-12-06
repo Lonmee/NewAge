@@ -23,7 +23,7 @@ export class NA {
 
         Interactiver.init();
 
-        Laya.stage.addChild(new BindTest(50));
+        Laya.stage.addChild(new BindTest(500));
     }
 
 }
