@@ -14,8 +14,8 @@ export class BD {
      * @param k
      * @returns {any}
      */
-    static g(k) {
-        return this.bd.get(k);
+    static g(k?) {
+        return k ? this.bd.get(k) : this.bd;
     }
 
     /**

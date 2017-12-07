@@ -8,12 +8,12 @@ export class FlyImage extends Image {
         super();
         this.size(40, 32);
         let x, y;
-        x = Math.random() * Laya.stage.width - this.width;
-        y = Math.random() * Laya.stage.height - this.height;
+        x = Math.round(Math.random() * Laya.stage.width - this.width);
+        y = Math.round(Math.random() * Laya.stage.height - this.height);
         this.pos(x < 0 ? 0 : x, y < 0 ? 0 : y);
         this.loadImage("img/pop.png");
 
-        this.speed = Math.random() * 5;
+        this.speed = Math.round(Math.random() * 5);
         this.speed < 2 && (this.speed = 2);
 
         BD.s(`view.test${id}.iPos`, {x: this.x, y: this.y});
