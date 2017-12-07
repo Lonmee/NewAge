@@ -2,11 +2,11 @@
  * Created by Lonmee on 8/9/2017.
  */
 
-import {Conf} from "./data/Conf";
+import {Conf} from "./mgr/data/Conf";
 import {Interactiver} from "./mgr/Interactiver";
-import {BindTest} from "./test/BindTest";
+import {BD} from "./mgr/data/BD";
 import WebGL = laya.webgl.WebGL;
-import {BD} from "./data/BD";
+import {GridTest} from "./mgr/test/GridTest";
 
 export class NA {
     constructor() {
@@ -23,8 +23,8 @@ export class NA {
 
 
         Interactiver.init();
-
-        Laya.stage.addChild(new BindTest(500));
+        Laya.stage.addChild(new GridTest());
+        // Laya.stage.addChild(new BindTest(500));
     }
 
 }

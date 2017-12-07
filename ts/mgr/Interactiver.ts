@@ -2,8 +2,8 @@
  * Created by ShanFeng on 12/6/2017.
  */
 import Event = laya.events.Event;
-import {BD} from "../data/BD";
-import {Conf} from "../data/Conf";
+import {BD} from "./data/BD";
+import {Conf} from "./data/Conf";
 
 export class Interactiver {
     constructor() {

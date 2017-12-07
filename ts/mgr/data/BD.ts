@@ -1,7 +1,7 @@
 /**
  * Created by Lonmee on 8/11/2017.
  */
-import {BindableDictionary} from "./BindableDictionary";
+import {BindableDictionary} from "../../data/BindableDictionary";
 
 /**
  * 数据绑定的静态代理
