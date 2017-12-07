@@ -1,5 +1,5 @@
 import Image = laya.ui.Image;
-import {DH} from "../data/DH";
+import {BD} from "../data/BD";
 
 export class FlyImage extends Image {
     private speed: number;
@@ -16,10 +16,10 @@ export class FlyImage extends Image {
         this.speed = Math.random() * 5;
         this.speed < 2 && (this.speed = 2);
 
-        DH.instance.bd.set(`view.test${id}.iPos`, {x: this.x, y: this.y});
-        DH.instance.bd.set(`view.test${id}.dir`, {x: Math.random() > .5 ? 1 : -1, y: Math.random() > .5 ? 1 : -1});
-        DH.instance.bd.set(`view.test${id}.speed`, this.speed);
-        DH.instance.bd.bind(`view.test${id}.iPos`, this, this.update);
+        BD.s(`view.test${id}.iPos`, {x: this.x, y: this.y});
+        BD.s(`view.test${id}.dir`, {x: Math.random() > .5 ? 1 : -1, y: Math.random() > .5 ? 1 : -1});
+        BD.s(`view.test${id}.speed`, this.speed);
+        BD.b(`view.test${id}.iPos`, this, this.update);
     }
 
     update(p) {
@@ -28,16 +28,16 @@ export class FlyImage extends Image {
 
         let dx, dy, pos;
         if (p.x < 0 || p.x + this.width > Laya.stage.width) {
-            pos = DH.instance.bd.get(`view.test${this.id}.dir`);
+            pos = BD.g(`view.test${this.id}.dir`);
             dx = pos.x;
             dy = pos.y;
-            DH.instance.bd.set(`view.test${this.id}.dir`, {x: dx * -1, y: dy});
+            BD.s(`view.test${this.id}.dir`, {x: dx * -1, y: dy});
         }
         if (p.y < 0 || p.y + this.height > Laya.stage.height) {
-            pos = DH.instance.bd.get(`view.test${this.id}.dir`);
+            pos = BD.g(`view.test${this.id}.dir`);
             dx = pos.x;
             dy = pos.y;
-            DH.instance.bd.set(`view.test${this.id}.dir`, {x: dx, y: dy * -1});
+            BD.s(`view.test${this.id}.dir`, {x: dx, y: dy * -1});
         }
     }
 }

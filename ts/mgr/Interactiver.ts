@@ -2,7 +2,7 @@
  * Created by ShanFeng on 12/6/2017.
  */
 import Event = laya.events.Event;
-import {DH} from "../data/DH";
+import {BD} from "../data/BD";
 import {Conf} from "../data/Conf";
 
 export class Interactiver {
@@ -13,7 +13,7 @@ export class Interactiver {
     static init() {
         Laya.stage.on(Event.KEY_DOWN, this, this.kdHandler);
         Laya.stage.on(Event.KEY_PRESS, this, this.kpHandler);
-        Conf.fw.debug && DH.instance.bd.bind("fw.showStatus", this, this.showStatus);
+        Conf.fw.debug && BD.b("fw.showStatus", this, this.showStatus);
     }
 
     static kdHandler(e) {
@@ -21,7 +21,7 @@ export class Interactiver {
         // console.log("kd:", e.keyCode, e.nativeEvent.code, e.nativeEvent.key);
         switch (e.nativeEvent.code) {
             case "KeyS":
-                Conf.fw.debug && DH.instance.bd.set("fw.showStatus", !DH.instance.bd.get("fw.showStatus"));
+                Conf.fw.debug && BD.s("fw.showStatus", !BD.g("fw.showStatus"));
                 break;
             case "KeyN":
                 break;
