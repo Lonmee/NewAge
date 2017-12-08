@@ -16726,7 +16726,7 @@ var Text=(function(_super){
 		this._charSize={};
 		/**
 		*是否显示下划线。
-		*/
+		*/Textrender
 		this.underline=false;
 		/**
 		*下划线的颜色，为null则使用字体颜色。

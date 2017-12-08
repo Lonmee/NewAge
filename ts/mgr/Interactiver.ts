@@ -2,6 +2,7 @@
  * Created by ShanFeng on 12/6/2017.
  */
 import Event = laya.events.Event;
+import Input = Laya.Input;
 import {BD} from "./data/BD";
 import {Conf} from "./data/Conf";
 
@@ -17,6 +18,8 @@ export class Interactiver {
     }
 
     static kdHandler(e) {
+        if (e.target instanceof Input)
+            return;
         //不区分大小写,包含功能键
         // console.log("kd:", e.keyCode, e.nativeEvent.code, e.nativeEvent.key);
         switch (e.nativeEvent.code) {
