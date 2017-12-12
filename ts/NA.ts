@@ -7,6 +7,7 @@ import {Interactiver} from "./mgr/Interactiver";
 import {BD} from "./mgr/data/BD";
 import WebGL = laya.webgl.WebGL;
 import {GridTest} from "./mgr/test/GridTest";
+import {BindTest} from "./mgr/test/BindTest";
 
 export class NA {
     constructor() {
@@ -23,8 +24,8 @@ export class NA {
 
 
         Interactiver.init();
-        Laya.stage.addChild(new GridTest());
-        // Laya.stage.addChild(new BindTest(500));
+        // Laya.stage.addChild(new GridTest());
+        Laya.stage.addChild(new BindTest(500));
     }
 
 }
