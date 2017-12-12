@@ -17,9 +17,9 @@ export class NA {
             window['na'] = this;
         }
 
-        Laya.init(Conf.stageConf.width, Conf.stageConf.height, WebGL);
-        Laya.stage.scaleMode = Conf.stageConf.scaleMode;
-        Laya.stage.bgColor = Conf.stageConf.bgColor;
+        // Laya.init(Conf.stageConf.width, Conf.stageConf.height, WebGL);
+        // Laya.stage.scaleMode = Conf.stageConf.scaleMode;
+        // Laya.stage.bgColor = Conf.stageConf.bgColor;
 
 
         Interactiver.init();
