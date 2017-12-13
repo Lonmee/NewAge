@@ -24,6 +24,7 @@ export class NA {
         Interactiver.init();
         Laya.stage.addChild(new GridTest());
         // Laya.stage.addChild(new BindTest(500));
+        //here is the temp branch;
     }
 
 }
