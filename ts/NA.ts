@@ -21,7 +21,6 @@ export class NA {
         Laya.stage.scaleMode = Conf.stageConf.scaleMode;
         Laya.stage.bgColor = Conf.stageConf.bgColor;
 
-
         Interactiver.init();
         Laya.stage.addChild(new GridTest());
         // Laya.stage.addChild(new BindTest(500));
