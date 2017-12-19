@@ -14,7 +14,7 @@ export class GridTest extends Sprite {
         super();
         this.pos(20, 40);
 
-        this.t = window['t'] = new Text();
+        this.t = new Text();
         this.t.font = "微软雅黑";
         this.t.fontSize = 24;
         //this.t.stroke = 5;
@@ -26,12 +26,25 @@ export class GridTest extends Sprite {
         }
 
         this.i = new Image();
+        //h:32 w:40
         this.i.loadImage("img/pop.png", 0, 0, 0, 0, Handler.create(this, this.com, [this.i]));
+        //h:64 w:110
+        // this.i.loadImage("img/bPop.png", 0, 0, 0, 0, Handler.create(this, this.com, [this.i]));
         this.i.addChild(this.t.pos(10, 5));
         this.addChild(this.i);
+
+        this.pivot(200, 150);
+        this.pos(200, 150);
+
+        Laya.timer.frameLoop(1, this, this.tick);
     }
 
-    com(i, t) {//h:32 w:40
+    tick(){
+        this.rotation++;
+    }
+
+    com(i, t) {
+        this.i._bitmap.clear();
         this.i.skin = t.url;
         i.sizeGrid = "20, 4, 4, 8, 0";
         i.size(this.t.width + this.t.x + 5, this.t.height + this.t.y + 8);

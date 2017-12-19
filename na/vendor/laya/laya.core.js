@@ -223,7 +223,7 @@ Laya.interface('laya.runtime.IPlatformClass','laya.runtime.IPlatform');
 /**
 *@private
 */
-//class laya.utils.RunDriver
+//class laya.utils.RunDriverLaya
 var RunDriver=(function(){
 	function RunDriver(){}
 	__class(RunDriver,'laya.utils.RunDriver');
