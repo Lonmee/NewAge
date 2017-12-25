@@ -36,7 +36,7 @@ export class GridTest extends Sprite {
         this.pivot(200, 150);
         this.pos(200, 150);
 
-        Laya.timer.frameLoop(1, this, this.tick);
+        // Laya.timer.frameLoop(1, this, this.tick);
     }
 
     tick(){
