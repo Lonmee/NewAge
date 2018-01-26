@@ -14,7 +14,7 @@ export class FlyImage extends Image {
         this.loadImage("img/pop.png");
 
         this.speed = Math.round(Math.random() * 5);
-        this.speed < 2 && (this.speed = 2);
+        this.speed == 0 && (this.speed = 1);
 
         BD.s(`view.test${id}.iPos`, {x: this.x, y: this.y});
         BD.s(`view.test${id}.dir`, {x: Math.random() > .5 ? 1 : -1, y: Math.random() > .5 ? 1 : -1});
