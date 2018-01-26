@@ -23,8 +23,8 @@ export class NA {
         Laya.stage.bgColor = Conf.stageConf.bgColor;
 
         Interactiver.init();
-        Laya.stage.addChild(window['t'] = new GridTest());
-        // Laya.stage.addChild(new BindTest(200));
+        // Laya.stage.addChild(window['t'] = new GridTest());
+        Laya.stage.addChild(new BindTest(200));
     }
 
 }
