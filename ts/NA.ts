@@ -6,7 +6,7 @@ import {Conf} from "./mgr/data/Conf";
 import {Interactiver} from "./mgr/Interactiver";
 import {BD} from "./mgr/data/BD";
 import {GridTest} from "./mgr/test/GridTest";
-import WebGL = laya.webgl.WebGL;
+import {BindTest} from "./mgr/test/BindTest";
 
 export class NA {
     constructor() {
@@ -22,8 +22,8 @@ export class NA {
         Laya.stage.bgColor = Conf.stageConf.bgColor;
 
         Interactiver.init();
-        Laya.stage.addChild(window['t'] = new GridTest());
-        // Laya.stage.addChild(new BindTest(500));
+        // Laya.stage.addChild(window['t'] = new GridTest());
+        Laya.stage.addChild(new BindTest(200));
     }
 
 }
