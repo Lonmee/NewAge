@@ -5,6 +5,7 @@ import Event = laya.events.Event;
 import Input = Laya.Input;
 import {BD} from "./data/BD";
 import {Conf} from "./data/Conf";
+import {ReduxTest} from "./test/ReduxTest";
 
 export class Interactiver {
     constructor() {
@@ -32,6 +33,14 @@ export class Interactiver {
                 break;
             case "Escape":
                 break;
+
+            case "ArrowUp":
+            case "ArrowDown":
+            case "ArrowLeft":
+            case "ArrowRight":
+                if (ReduxTest.STORE) {
+                    ReduxTest.STORE.dispatch({type: e.nativeEvent.code});
+                }
         }
     }
 
