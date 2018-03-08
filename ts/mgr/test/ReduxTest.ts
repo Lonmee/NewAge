@@ -4,13 +4,13 @@
  * 尚未继承redux的ReactComponent基类，适配react视图时扩展
  * 该例简约实验redux核心mvc机制
  *
- * 交互事件来自kdHandler() @ mgr/Interactiver的键盘响应，同理可扩展ui交互事件
+ * 交互事件来自kdHandler() @ mgr/Interactiver的键盘响应（方向键），同理可扩展ui交互事件
  */
 import {createStore} from "../../../vendor/redux";
 import Sprite = laya.display.Sprite;
 
 export class ReduxTest extends Sprite {
-    //todo:可重构如全局单例可重构如全局单例
+    //todo:可重构入全局单例
     public static STORE = createStore(run);
 
     constructor() {
