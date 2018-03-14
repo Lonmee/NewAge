@@ -23,8 +23,8 @@ export class NA {
 
         Interactiver.init();
         // Laya.stage.addChild(window['t'] = new GridTest());
-        // Laya.stage.addChild(new BindTest(200));
-        Laya.stage.addChild(new ReduxTest());
+        Laya.stage.addChild(new BindTest(200));
+        // Laya.stage.addChild(new ReduxTest());
     }
 
 }
