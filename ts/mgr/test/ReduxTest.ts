@@ -22,6 +22,7 @@ export class ReduxTest extends Sprite {
         ReduxTest.STORE.subscribe(this.update.bind(this));
     }
 
+    //view
     update() {
         let pos = ReduxTest.STORE.getState();
         this.x = pos.x;

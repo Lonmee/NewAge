@@ -7,6 +7,8 @@ import {Interactiver} from "./mgr/Interactiver";
 import {BD} from "./mgr/data/BD";
 import {BindTest} from "./mgr/test/BindTest";
 import WebGL = laya.webgl.WebGL;
+import {ReduxTest} from "./mgr/test/ReduxTest";
+import {GridTest} from "./mgr/test/GridTest";
 
 export class NA {
     constructor() {
